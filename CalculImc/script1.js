@@ -8,16 +8,8 @@ function calcul(prenom,taille, poids){
     }
 
 
-
-    if (prenom.toLowerCase() =="lenaig" || prenom.toLowerCase() == "lénaig" ){
-        let prenom = "demande ton imc à ton amoureux";
-        document.getElementById("resultString").textContent =prenom;}  
-        else if (prenom == "romeo" || prenom == "romeo"){
-            let prenom = "t'es parfait";
-        document.getElementById("resultString").textContent =prenom;
-    }  
-        else if( imc <=18.5){
-            let maigreur = "Vous êtes en :  Insuffisance pondérale (maigreur)";
+        if( imc <=18.5){
+            let maigreur = "Vous êtes en : Insuffisance pondérale (maigreur)";
             document.getElementById("resultString").textContent =maigreur;
             
         }else if( imc >= 18.5 && imc <24.9){
