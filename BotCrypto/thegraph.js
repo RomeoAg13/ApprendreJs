@@ -38,7 +38,7 @@ const url = "https://www.coinbase.com/price/the-graph";
         });
         let info = await transporter.sendMail({
             from :'"PRIX THE GRAPH COINBASE" <puppeteerromeo@gmail.com>',
-            to : "lenaigropars3@gmail.com ",
+            to : "romeoago004@gmail",
             suject:"PRIX SOUS LES "+price+" EUROS",
             html: "le prix de la crypto the graph est de "+ price +" euro"
         }).then(()=> console.log("message envoye"))
