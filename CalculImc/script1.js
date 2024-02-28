@@ -1,13 +1,14 @@
 
 function calcul(prenom,taille, poids){
     var imc = 0;
+
     if (taille && poids > 0 && taille && poids != null) {
+
         taille /=100;
         imc = poids/(taille*taille);
+
         document.getElementById("resultImc").textContent =imc.toFixed(2);
     }
-
-
         if( imc <=18.5){
             let maigreur = "Vous êtes en : Insuffisance pondérale (maigreur)";
             document.getElementById("resultString").textContent =maigreur;
@@ -31,8 +32,6 @@ function calcul(prenom,taille, poids){
         else {
             return "un soucis dans les valeurs";
         }
-        
-    
 }
 
 function calculImc(){
