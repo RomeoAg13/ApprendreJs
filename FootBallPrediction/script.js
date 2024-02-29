@@ -4,10 +4,18 @@ async function ButtonClick() {
 const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': '2a55080ac9mshf2eb7725d0cefa4p12078ejsn732b06c29bc5',
+		'X-RapidAPI-Key': '4e86457e78msha37006096f599b5p13e9dfjsn2eeba9ea64c5',
 		'X-RapidAPI-Host': 'football-prediction-api.p.rapidapi.com'
 	}
 };
+
+try {
+	const response = await fetch(url, options);
+	const result = await response.text();
+	console.log(result);
+} catch (error) {
+	console.error(error);
+}
 
 try {
 	const response = await fetch(url, options);
