@@ -47,6 +47,6 @@ const url = "https://www.coinbase.com/price/the-graph";
     // let bodyHTML = await page.evaluate(()=> document.body.innerHTML);
     // console.log(bodyHTML);
 
-    // await page.screenshot({ path: "screenshot.png" });
+    //await page.screenshot({ path: "screenshot.png" });
     await browser.close();
 })();
