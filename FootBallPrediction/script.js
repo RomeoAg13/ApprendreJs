@@ -1,13 +1,21 @@
 async function ButtonClick() {
     const date = document.getElementById('dateChoosen').value;
     const url = `https://football-prediction-api.p.rapidapi.com/api/v2/predictions?federation=UEFA&iso_date=${date}&market=classic`;
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'b5e71e373cmsh88f7c6d5994b015p10e03ejsn85ac285ecd37',
-            'X-RapidAPI-Host': 'football-prediction-api.p.rapidapi.com'
-        }
-    };
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '2a55080ac9mshf2eb7725d0cefa4p12078ejsn732b06c29bc5',
+		'X-RapidAPI-Host': 'football-prediction-api.p.rapidapi.com'
+	}
+};
+
+try {
+	const response = await fetch(url, options);
+	const result = await response.text();
+	console.log(result);
+} catch (error) {
+	console.error(error);
+}
 
     try {
         const response = await fetch(url, options);
@@ -16,19 +24,38 @@ async function ButtonClick() {
 
         if (result.data && result.data.length > 0) {
             const matchesInfo = result.data.map(match => {
+                var predictedData;
+                if ( match.prediction === "1"){
+                    predictedData = match.home_team;
+                }else if (match.prediction === "2"){ 
+                    predictedData = match.away_team;
+                }else if ( match.prediction === "12"){
+                    predictedData = `${match.away_team} + ${match.home_team}`;
+
+                }else if (match.prediction === "1X"){
+                    predictedData = `${match.away_team} or DRAW`;
+                }
+
                 return `
-                    <div>
-                    <hr>
-                        <p>Home Team: ${match.home_team}</p>
-                        <p>Away Team: ${match.away_team}</p>
-                        <p>Competition Name: ${match.competition_name}</p>
-                        <p>Prediction: ${match.prediction}</p>
-                        <p>Score: ${match.result}</p>
-                        <p>Start Date: ${match.start_date}</p>
+                    <div class='container'>
+                        <span class='team'>
+                            <p>${match.home_team} VS ${match.away_team}</p>
+                            <p id='predict'>Prediction: ${predictedData}</p>
+                        </span>
+        
+                        <span class='nameCompet'>
+                            <p>Score: ${match.result}</p>
+                            <p>Competition Name: ${match.competition_name}</p>
+                        </span>
+        
+                        <span class='others'>
+                            <p>Start Date: ${match.start_date}</p>
+                        </span>
                     </div>
                 `;
             }).join('');
-            predictionData.innerHTML = `<h1>Match Details   1 = HOME TEAM, 2 = AWAY TEAM, 12 = DRAW </h1> ${matchesInfo}`;
+        
+            predictionData.innerHTML = `<h1>Match Details</h1> ${matchesInfo}`;
         } else {
             predictionData.innerHTML = "<p>Aucun match trouvé pour cette date.</p>";
         }
